@@ -1,0 +1,28 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListStatePrefix",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": ["arn:aws:s3:::REPLACE_BUCKET"],
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": ["aem-cloud-platform/REPLACE_ENV/networking.tfstate", "aem-cloud-platform/REPLACE_ENV/networking.tfstate.tflock"]
+        }
+      }
+    },
+    {
+      "Sid": "ReadWriteOwnState",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": ["arn:aws:s3:::REPLACE_BUCKET/aem-cloud-platform/REPLACE_ENV/networking.tfstate"]
+    },
+    {
+      "Sid": "LockOwnState",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+      "Resource": ["arn:aws:s3:::REPLACE_BUCKET/aem-cloud-platform/REPLACE_ENV/networking.tfstate.tflock"]
+    }
+  ]
+}

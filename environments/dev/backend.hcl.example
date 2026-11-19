@@ -1,4 +1,6 @@
-bucket       = "REPLACE-WITH-UNIQUE-STATE-BUCKET"
+# Copy to backend.hcl (gitignored); replace bucket name.
+# For separate AWS accounts, create a state bucket in each account.
+bucket       = "yemi-unique-s3.bucket-xyz"
 key          = "aem-cloud-platform/dev/networking.tfstate"
 region       = "ca-central-1"
 encrypt      = true
