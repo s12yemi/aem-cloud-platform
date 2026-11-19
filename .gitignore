@@ -1,0 +1,17 @@
+# Local Terraform state and providers
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/crash.log
+**/crash.*.log
+**/*.tfplan
+**/tfplan
+# Local credentials / configuration
+.env
+*.pem
+*.key
+**/*.auto.tfvars
+!**/*.auto.tfvars.example
+# Backend settings may contain account-specific details
+**/backend.hcl
+.DS_Store

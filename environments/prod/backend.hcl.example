@@ -1,0 +1,5 @@
+bucket       = "REPLACE-WITH-UNIQUE-STATE-BUCKET"
+key          = "aem-cloud-platform/prod/networking.tfstate"
+region       = "ca-central-1"
+encrypt      = true
+use_lockfile = true

@@ -1,0 +1,4 @@
+aws_region  = "ca-central-1"
+environment = "staging"
+vpc_cidr    = "10.30.0.0/16"
+nat_mode    = "none" # "single" for lab internet, "per_az" for resilient NAT (costs more)

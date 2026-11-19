@@ -1,0 +1,26 @@
+name: Terraform checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, staging, prod]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.10.5'
+      - name: Terraform format (normalize before validation)
+        run: terraform fmt -recursive
+      - name: Initialize modules without AWS credentials
+        working-directory: environments/${{ matrix.environment }}
+        run: terraform init -backend=false -input=false
+      - name: Validate syntax and references
+        working-directory: environments/${{ matrix.environment }}
+        run: terraform validate -no-color

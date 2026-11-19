@@ -1,0 +1,5 @@
+# To enable remote state, copy to backend.tf, remove comment markers,
+# and configure backend.hcl (see bootstrap-state/README.md).
+# terraform {
+#   backend "s3" {}
+# }

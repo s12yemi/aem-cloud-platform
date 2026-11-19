@@ -1,0 +1,10 @@
+output "vpc_id" { value = aws_vpc.this.id }
+output "vpc_cidr" { value = aws_vpc.this.cidr_block }
+output "public_subnet_ids" { value = [for key in sort(keys(local.azs)) : aws_subnet.public[key].id] }
+output "app_subnet_ids" { value = [for key in sort(keys(local.azs)) : aws_subnet.app[key].id] }
+output "database_subnet_ids" { value = [for key in sort(keys(local.azs)) : aws_subnet.database[key].id] }
+output "public_route_table_id" { value = aws_route_table.public.id }
+output "app_route_table_ids" { value = [for key in sort(keys(local.azs)) : aws_route_table.app[key].id] }
+output "database_route_table_ids" { value = [for key in sort(keys(local.azs)) : aws_route_table.database[key].id] }
+output "nat_gateway_ids" { value = [for gateway in aws_nat_gateway.this : gateway.id] }
+output "s3_gateway_endpoint_id" { value = try(aws_vpc_endpoint.s3[0].id, null) }
