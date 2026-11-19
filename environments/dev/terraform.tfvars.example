@@ -2,3 +2,13 @@ aws_region  = "ca-central-1"
 environment = "dev"
 vpc_cidr    = "10.20.0.0/16"
 nat_mode    = "none" # "single" for lab internet, "per_az" for resilient NAT (costs more)
+
+# Phase 3: explicitly opt in to launch billable EC2 + ALB resources.
+enable_application          = false
+application_instance_type  = "t3.micro"
+application_desired_capacity = 1
+application_max_size        = 2
+# Enabling creates SIX interface endpoint ENIs across two AZs: recurring charges.
+enable_ssm_endpoints        = false
+# Optional email alarms (requires confirming SNS subscription).
+alarm_email                = ""

@@ -22,3 +22,22 @@ module "networking" {
     CostCenter = "interview-lab"
   }
 }
+
+
+# Disabled by default in every environment: VPC-only plans remain inexpensive.
+module "application" {
+  count                = var.enable_application ? 1 : 0
+  source               = "../../modules/application"
+  name                 = "aem-cloud-platform"
+  environment          = var.environment
+  vpc_id               = module.networking.vpc_id
+  vpc_cidr             = module.networking.vpc_cidr
+  public_subnet_ids    = module.networking.public_subnet_ids
+  private_subnet_ids   = module.networking.app_subnet_ids
+  instance_type        = var.application_instance_type
+  desired_capacity     = var.application_desired_capacity
+  max_size             = var.application_max_size
+  enable_ssm_endpoints = var.enable_ssm_endpoints
+  alarm_email          = var.alarm_email
+  tags                 = { CostCenter = "interview-lab" }
+}
